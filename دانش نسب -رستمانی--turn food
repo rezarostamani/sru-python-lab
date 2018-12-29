@@ -1,0 +1,38 @@
+#!/usr/bin/python3.6
+import telepot
+import time
+import urllib3
+
+# You can leave this bit out if you're using a paid PythonAnywhere account
+#proxy_url = "http://proxy.server:3128"
+#telepot.api._pools = {
+#    'default': urllib3.ProxyManager(proxy_url=proxy_url, num_pools=3, maxsize=10, retries=False, timeout=30),
+#}
+#telepot.api._onetime_pool_spec = (urllib3.ProxyManager, dict(proxy_url=proxy_url, num_pools=1, maxsize=1, retries=False, timeout=30))
+# end of the stuff that's only needed for free accounts
+
+bot = telepot.Bot('771162135:AAFyMnmGFZ0R_xIxIGmKnMVhyeHTtJzUYMI')
+
+def handle(msg):
+    content_type, chat_type, chat_id = telepot.glance(msg)
+    print(content_type, chat_type, chat_id)
+
+    if content_type == 'text':
+        if msg['text']=='/start':
+           bot.sendMessage(chat_id,'hello welcome to traditions from shia moslems leaders you can use from the choices that are bottom 1.tradition about think 2.tradition about world 3.tradition about friend please just give me a number')    
+        elif msg['text']=='1':
+            bot.sendMessage(chat_id,'reflecting and understanding is more beneficial of much repeating and learning.')
+        elif msg['text']=='2':
+            bot.sendMessage(chat_id, 'The love of this [material] world is the origin of all vices')
+        elif msg['text']=='3':
+            bot.sendMessage(chat_id, 'Man is influenced by the faith of his friends; be careful of whom you associate with')
+        else:
+            bot.sendMessage(chat_id, "You said '{}'".format(msg["text"]))
+
+bot.message_loop(handle)
+
+print ('Listening ...')
+
+# Keep the program running.
+while 1:
+    time.sleep(10)
